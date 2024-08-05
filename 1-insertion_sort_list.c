@@ -6,16 +6,16 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *now, *after, *temp;
+    listint_t *now, *next, *temp;
 
-    if (list == NULL || *list == NULL || (*list)->after == NULL)
+    if (list == NULL || *list == NULL || (*list)->next == NULL)
     {
         return;
     }
-    now = (*list)->after;
+    now = (*list)->next;
     while (now != NULL)
     {
-        after = now->after;
+        next = now->next;
         temp = now->prev;
         while ( temp != NULL && now->n < temp->n)
         {
@@ -23,6 +23,6 @@ void insertion_sort_list(listint_t **list)
             print_list(*list);
             temp = now->prev;
         }
-        now = after;
+        now = next;
     }
 }
