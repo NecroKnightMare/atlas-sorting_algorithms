@@ -1,4 +1,23 @@
 #include "sort.h"
+void swap_list( listint_t **list, listint_t *N1, listint_t *N2)
+{
+    if (N1->prev)
+    {
+        N1->prev->next = N2;
+    }
+    else
+    {
+        *list = N2;
+    }
+    if (N2->next)
+        {
+            N2->next->prev = N1;
+        }
+    N1->next = N2->next;
+    N2->prev = N1->prev;
+    N1->prev = N2;
+    N2->next = N1;
+}
 /**
  * insertion_sort_list - uses singly linked list to go through array
  * @list: SLL in header
