@@ -25,24 +25,4 @@ void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
 void swap_list( listint_t **list, listint_t *N1, listint_t *N2);
 
-void swap_list( listint_t **list, listint_t *N1, listint_t *N2)
-{
-    if (N1->prev)
-    {
-        N1->prev->next = N2;
-    }
-    else
-    {
-        *list = N2;
-    }
-    if (N2->next)
-        {
-            N2->next->prev = N1;
-        }
-    N1->next = N2->next;
-    N2->prev = N1->prev;
-    N1->prev = N2;
-    N2->next = N1;
-}
-
 #endif
