@@ -24,7 +24,7 @@ int divide_conquer(int *array, int low, int high)
     int i = low -1;
     int j = low;
 
-    while (j < high)
+    while (j <= high)
     {
         j++;
         if (array[j] <= divide)
