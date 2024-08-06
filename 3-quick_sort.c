@@ -22,9 +22,11 @@ int divide_conquer(int *array, int low, int high)
 {
     int divide = array[high];
     int i = low -1;
+    int j = low;
 
-    for (int j = low; j < high; j++)
+    while (j < high)
     {
+        j++;
         if (array[j] <= divide)
         {
             i++;
