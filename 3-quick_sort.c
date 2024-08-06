@@ -1,42 +1,42 @@
 #include "sort.h"
 /**
- * swap - swap array
- * @a: point in array
- * @b: point in array
- * Return: void
+ * 
+ * 
+ * 
  */
 void swap(int *a, int *b)
 {
     int temp = *a;
     *a = *b;
-    *b = temp;
+    *b =temp;
 }
 /**
  * divide_conquer - parse through array
  * @array: array
  * @low: low number
  * @high: high number
+ * @size: size of array
  * Return: index of parse
  */
-int divide_conquer(int *array, int low, int high)
+int divide_conquer(int *array, int low, int high, size_t size)
 {
     int divide = array[high];
-    int i = low -1;
+    int i = low;
     int j = low;
 
-    while (j <= high)
+    while (j < high)
     {
         j++;
         if (array[j] <= divide)
         {
+           swap(&array[i], &array[high]);
+           print_array(array, size);
             i++;
-            swap(&array[i], &array[j]);
-            print_array(array, high + 1);
         }
     }
-    swap(&array[i + 1], &array[high]);
-    print_array(array, high + 1);
-    return (i + 1);
+    swap(&array[i], &array[high]);
+    print_array(array, size);
+    return (i);
 }
 /**
  * catch_all_sort - use this function to condense recursion
@@ -44,13 +44,15 @@ int divide_conquer(int *array, int low, int high)
  * @size: size of array
  * Return: void
  */
-void catch_all_sort(int *array, int low, int high)
+void catch_all_sort(int *array, int low, int high, size_t size)
 {
+    int k;
+    
     if (low < high)
     {
-        int k = divide_conquer(array, low, high);
-        catch_all_sort(array, low, k - 1);
-        catch_all_sort(array, k +1, high);
+        k = divide_conquer(array, low, high, size);
+        catch_all_sort(array, low, k - 1, size);
+        catch_all_sort(array, k + 1, high, size);
     }
 }
 /**
@@ -65,5 +67,5 @@ void quick_sort(int *array, size_t size)
     {
         return;
     }
-    catch_all_sort(array, 0, size - 1);
+    catch_all_sort(array, 0, size - 1, size);
 }
