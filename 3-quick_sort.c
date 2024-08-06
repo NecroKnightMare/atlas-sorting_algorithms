@@ -1,16 +1,5 @@
 #include "sort.h"
 /**
- * 
- * 
- * 
- */
-void swap(int *a, int *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b =temp;
-}
-/**
  * divide_conquer - parse through array
  * @array: array
  * @low: low number
@@ -23,19 +12,26 @@ int divide_conquer(int *array, int low, int high, size_t size)
     int divide = array[high];
     int i = low;
     int j = low;
+    int temp;
 
     while (j < high)
     {
         j++;
-        if (array[j] <= divide)
+        if (array[j] < divide)
         {
-           swap(&array[i], &array[high]);
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            if (array[i] > array[j])
            print_array(array, size);
             i++;
         }
     }
-    swap(&array[i], &array[high]);
+    temp = array[i];
+    array[i] = array[high];
+    array[high] = temp;
     print_array(array, size);
+
     return (i);
 }
 /**
@@ -63,7 +59,7 @@ void catch_all_sort(int *array, int low, int high, size_t size)
  */
 void quick_sort(int *array, size_t size)
 { 
-   if (array == NULL || size < 2)
+   if (!array || size < 2)
     {
         return;
     }
