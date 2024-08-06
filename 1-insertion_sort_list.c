@@ -11,7 +11,7 @@ void swap_list( listint_t **list, listint_t *N1, listint_t *N2)
 }
     if (N2->next)
 {
-            N2->next->prev = N1;
+        N2->next->prev = N1;
 }
     N1->next = N2->next;
     N2->prev = N1->prev;
