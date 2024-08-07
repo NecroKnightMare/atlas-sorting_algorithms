@@ -22,6 +22,7 @@ int divide_conquer(int *array, int low, int high, size_t size)
             temp = array[i];
             array[i] = array[j];
             array[j] = temp;
+            
             if (array[i] > array[j])
            print_array(array, size);
             i++;
