@@ -25,4 +25,9 @@ void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
 void swap_list( listint_t **list, listint_t *N1, listint_t *N2);
 
+/*ADVANCED*/
+void shell_sort(int *array, size_t size);/*task 0*/
+void counting_sort(int *array, size_t size);/*task 1*/
+void merge_sort(int *array, size_t size);/*task 2*/
+
 #endif
