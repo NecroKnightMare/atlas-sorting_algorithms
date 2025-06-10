@@ -15,16 +15,17 @@ void shell_sort(int *array, size_t size)
     size_t g;
     for (g = 0; g < num_gaps; g++)
     {
+        int gap = gaps[g];
         size_t i;
-        for (i = gaps[g]; i < size; i++)
+        for (i = gap; i < size; i++)
         {
             int temp = array[i];
             size_t j = i;
 
-            while (j >= (size_t)gaps[g] && array[j - gaps[g]] > temp)
+            while (j >= (size_t)gap && array[j - gap] > temp)
             {
-                array[j] = array[j - gaps[g]];
-                j -= gaps[g];
+                array[j] = array[j - gap];
+                j -= gap;
             }
             array[j] = temp;
         }
