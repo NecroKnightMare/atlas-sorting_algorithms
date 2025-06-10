@@ -1,0 +1,30 @@
+/* {
+    /*Sort an array a[0...n-1].*/
+     /*int gaps[] = {701, 301, 132, 57, 23, 10, 4, 1}; /*Ciura gap sequence*/
+     /*size_t num_gaps = sizeof(gaps) / sizeof(gaps[0]);
+
+     for (size_t g = 0; g < num_gaps; g++)
+     {
+         int gap = gaps[g];
+
+     /*Start with the largest gap and work down to a gap of 1*/
+     /*similar to insertion sort but instead of 1, gap is being used
+     in each step foreach (gap in gaps)*/
+     /*Do a gapped insertion sort for every element in gaps
+     Each loop leaves a[0..gap-1] in gapped order*/
+         /*for (size_t i = gap; i < size; i++)
+         {*/
+             /*save a[i] in temp and make a hole at position i*/
+             /*int temp = array[i];
+             size_t j = i;
+             /*shift earlier gap-sorted elements up until the correct
+             location for a[i] is found*/
+             /*while (j >= (size_t)gap && array[j - gap] > temp)
+             {
+                 array[j] = array[j - gap];
+                 j -= gap;
+             }
+             /*put temp (the original a[i]) in its correct location*/
+             /*array[j] = temp;
+         }    
+     }*/
