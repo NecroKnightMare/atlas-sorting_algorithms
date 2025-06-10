@@ -9,15 +9,18 @@ void print_array(const int *array, size_t size);
 
 void shell_sort(int *array, size_t size)
 {
-    int gaps[] = {701, 301, 132, 57, 23, 10, 4, 1};  /*Ciura gap sequence*/
-    size_t num_gaps = sizeof(gaps) / sizeof(gaps[0]);
+    /*Error handling*/
+    if (!array || size < 2) return;
 
-    size_t g;
-    for (g = 0; g < num_gaps; g++)
+    /*Generate Knuth sequence dynamically*/
+    int gap = 1;
+    while (gap < (int)size / 3) {
+        gap = gap * 3 + 1; /*Knuth formula*/
+    }
+
+    while (gap >= 1)
     {
-        int gap = gaps[g];
-        size_t i;
-        for (i = gap; i < size; i++)
+        for (size_t i = gap; i < size; i++)
         {
             int temp = array[i];
             size_t j = i;
@@ -30,5 +33,7 @@ void shell_sort(int *array, size_t size)
             array[j] = temp;
         }
         print_array(array, size);
+
+        gap /= 3; /*Reduce gap following Knuth sequence*/
     }
 }
