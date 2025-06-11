@@ -59,12 +59,13 @@ void merge_sort_recursive(int *array, int *temp, size_t left, size_t right)
 /* Merge Sort Wrapper */
 void merge_sort(int *array, size_t size)
 {
+	int *temp;
 	if (!array || size < 2)
 	{
 		return;
 	}
 
-	int *temp = malloc(size * sizeof(int));
+	temp = malloc(size * sizeof(int));
 	if (!temp)
 	{
 		return;
