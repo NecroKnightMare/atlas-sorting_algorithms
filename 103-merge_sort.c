@@ -14,14 +14,14 @@ void merge(int *array, int *temp, size_t left, size_t mid, size_t right) {
 	printf("Merging...\n[left]: ");
 	for (l = left; l < mid; l++)
 	{
-		printf("%d ", array[l]);
+		printf("%d", array[l]);
 		if (l < mid - 1) printf(", ");
 	}
 	printf("\n[right]: ");
 	
 	for (l = mid; l < right; l++)
 	{
-		printf("%d ", array[l]);
+		printf("%d", array[l]);
 		if (l < right - 1) printf(", ");
 	}
 	printf("\n");
@@ -45,7 +45,7 @@ void merge(int *array, int *temp, size_t left, size_t mid, size_t right) {
     printf("[Done]: ");
 	for (l = left; l < right; l++)
 	{
-		printf("%d ", array[l]);
+		printf("%d", array[l]);
 		if (l < right - 1) printf(", ");
 	}
 	printf("\n");
