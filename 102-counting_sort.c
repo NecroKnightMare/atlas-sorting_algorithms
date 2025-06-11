@@ -10,12 +10,16 @@ void print_array(const int *array, size_t size);
 
 void counting_sort(int *array, size_t size)
 {
+    int max;
+    int *count, *sorted;
+    size_t i, j;
+
     if (!array || size < 2)
     {
         return;
     }
-    int max = array[0];
-    size_t i;
+
+    max = array[0];
 
     for (i = 1; i < size; i++)
     {
@@ -24,7 +28,7 @@ void counting_sort(int *array, size_t size)
             max = array[i];
         }
     }
-    int *count = calloc(max + 1, sizeof(int));
+    count = calloc(max + 1, sizeof(int));
     if (!count)
     {
         return;
@@ -34,23 +38,23 @@ void counting_sort(int *array, size_t size)
     count[array[i]]++;
     }
 
-    print_array(count, max +1);
+    print_array(count, max + 1);
 
     for (i = 1; i <= (size_t)max; i++)
     {
         count[i] += count[i - 1];
     }
-    int *sorted = malloc(size * sizeof(int));
+    sorted = malloc(size * sizeof(int));
     if (!sorted)
     {
         free(count);
         return;
     }
     
-    for (int i = (int)size - 1; i >= 0; i--)
+    for (j = size; j > 0; j--)
     {
-        sorted[count[array[i]] - 1] = array[i];
-        count[array[i]]--;
+        sorted[count[array[j - 1]] - 1] = array[j - 1];
+        count[array[j - 1]]--;
     }
     for (i = 0; i < size; i++)
     {
