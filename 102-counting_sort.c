@@ -10,7 +10,7 @@ void print_array(const int *array, size_t size);
 
 void counting_sort(int *array, size_t size)
 {
-    int max;
+    int max, k;
     int *count, *sorted;
     size_t i, j;
 
@@ -31,26 +31,29 @@ void counting_sort(int *array, size_t size)
     count = calloc(max + 1, sizeof(int));
     if (!count)
     {
+        free(count);
         return;
     }
-    for ( i = 0; i< size; i++)
+
+    for (i = 0; i < size; i++)
     {
-    count[array[i]]++;
+        count[array[i]]++;
     }
 
     print_array(count, max + 1);
 
-    for (i = 1; i <= (size_t)max; i++)
+    for (k = 1; k <= max; k++)
     {
-        count[i] += count[i - 1];
+        count[k] += count[k - 1];
     }
+    
     sorted = malloc(size * sizeof(int));
     if (!sorted)
     {
         free(count);
         return;
     }
-    
+  
     for (j = size; j > 0; j--)
     {
         sorted[count[array[j - 1]] - 1] = array[j - 1];
