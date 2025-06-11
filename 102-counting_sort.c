@@ -15,18 +15,27 @@ void counting_sort(int *array, size_t size)
 	size_t i;
 	int k;
 
-	if (!array || size < 2) return;
+	if (!array || size < 2)
+	{
+		return;
+	}
 
 	/* Step 1: Find max value */
 	max = array[0];
 	for (i = 1; i < size; i++)
 	{
-		if (array[i] > max) max = array[i];
+		if (array[i] > max)
+		{
+			max = array[i];
+		}
 	}
 
 	/* Step 2: Allocate count array */
 	count = calloc(max + 1, sizeof(int));
-	if (!count) return;
+	if (!count)
+	{
+		return;
+	}
 
 	/* Step 3: Count occurrences */
 	for (i = 0; i < size; i++)
@@ -41,10 +50,11 @@ void counting_sort(int *array, size_t size)
 	}
 
 	print_array(count, max + 1);
-	
+
 	/* Step 5: Allocate sorted array */
 	sorted = malloc(size * sizeof(int));
-	if (!sorted) {
+	if (!sorted) 
+	{
 		free(count);
 		return;
 	}
