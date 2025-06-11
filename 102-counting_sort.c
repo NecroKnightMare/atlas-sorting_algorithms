@@ -40,6 +40,8 @@ void counting_sort(int *array, size_t size)
 		count[k] += count[k - 1];
 	}
 
+	print_array(count, max + 1);
+	
 	/* Step 5: Allocate sorted array */
 	sorted = malloc(size * sizeof(int));
 	if (!sorted) {
