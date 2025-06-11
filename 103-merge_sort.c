@@ -4,53 +4,69 @@
 /*use [gcc -Wall -Wextra -Werror -pedantic 103-main.c 103-merge_sort.c
 print_array.c -o merge] to compile  and ./merge to test output*/
 
+void print_array(const int *array, size_t size);
+
+/* Merge function */
+void merge(int *array, int *temp, size_t left, size_t mid, size_t right) {
+	size_t i = left, j = mid, k = left;
+
+	printf("Merging...\n[left]: ");
+	for (size_t l = left; l < mid; l++) printf("%d ", array[l]);
+	printf("\n[right]: ");
+	for (size_t l = mid; l < right; l++) printf("%d ", array[l]);
+	printf("\n");
+
+	/* Merge process */
+	while (i < mid && j < right) 
+	{
+		if (array[i] <= array[j]) temp[k++] = array[i++];
+		else {
+			temp[k++] = array[j++];
+		}
+	}
+	while (i < mid) temp[k++] = array[i++];
+	while (j < right) temp[k++] = array[j++];
+
+	/* Copy sorted values back */
+	for (i = left; i < right; i++)
+	{
+		array[i] = temp[i];
+	}
+
+    /* Print final merged array */
+    printf("[Done]: ");
+	for (size_t l = left; l < right; l++) printf("%d ", array[l]);
+	printf("\n");
+}
+
+/* Recursive Merge Sort */
+void merge_sort_recursive(int *array, int *temp, size_t left, size_t right)
+{
+	if (right - left < 2)
+	{
+		return;
+	}
+
+	size_t mid = left + (right - left) / 2;
+	merge_sort_recursive(array, temp, left, mid);
+	merge_sort_recursive(array, temp, mid, right);
+	merge(array, temp, left, mid, right);
+}
+
+/* Merge Sort Wrapper */
 void merge_sort(int *array, size_t size)
 {
-    // Array A[] has the items to sort; array B[] is a work array.
-void TopDownMergeSort(A[], B[], n)
-{
-    CopyArray(A, 0, n, B);           // one time copy of A[] to B[]
-    TopDownSplitMerge(A, 0, n, B);   // sort data from B[] into A[]
-}
+	if (!array || size < 2)
+	{
+		return;
+	}
 
-// Split A[] into 2 runs, sort both runs into B[], merge both runs from B[] to A[]
-// iBegin is inclusive; iEnd is exclusive (A[iEnd] is not in the set).
-void TopDownSplitMerge(B[], iBegin, iEnd, A[])
-{
-    if (iEnd - iBegin <= 1)                     // if run size == 1
-        return;                                 //   consider it sorted
-    // split the run longer than 1 item into halves
-    iMiddle = (iEnd + iBegin) / 2;              // iMiddle = mid point
-    // recursively sort both runs from array A[] into B[]
-    TopDownSplitMerge(A, iBegin,  iMiddle, B);  // sort the left  run
-    TopDownSplitMerge(A, iMiddle,    iEnd, B);  // sort the right run
-    // merge the resulting runs from array B[] into A[]
-    TopDownMerge(B, iBegin, iMiddle, iEnd, A);
-}
+	int *temp = malloc(size * sizeof(int));
+	if (!temp)
+	{
+		return;
+	}
 
-//  Left source half is A[ iBegin:iMiddle-1].
-// Right source half is A[iMiddle:iEnd-1   ].
-// Result is            B[ iBegin:iEnd-1   ].
-void TopDownMerge(B[], iBegin, iMiddle, iEnd, A[])
-{
-    i = iBegin, j = iMiddle;
- 
-    // While there are elements in the left or right runs...
-    for (k = iBegin; k < iEnd; k++) {
-        // If left run head exists and is <= existing right run head.
-        if (i < iMiddle && (j >= iEnd || A[i] <= A[j])) {
-            B[k] = A[i];
-            i = i + 1;
-        } else {
-            B[k] = A[j];
-            j = j + 1;
-        }
-    }
-}
-
-void CopyArray(A[], iBegin, iEnd, B[])
-{
-    for (k = iBegin; k < iEnd; k++)
-        B[k] = A[k];
-}
+	merge_sort_recursive(array, temp, 0, size);
+	free(temp);
 }
