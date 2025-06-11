@@ -13,6 +13,7 @@ void counting_sort(int *array, size_t size)
 {
 	int max, *count, *sorted;
 	size_t i;
+	int k;
 
 	if (!array || size < 2) return;
 
@@ -34,7 +35,7 @@ void counting_sort(int *array, size_t size)
 	}
 
 	/* Step 4: Compute cumulative sum */
-	for (int k = 1; k <= max; k++)
+	for (k = 1; k <= max; k++)
 	{
 		count[k] += count[k - 1];
 	}
