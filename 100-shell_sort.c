@@ -9,21 +9,24 @@ void print_array(const int *array, size_t size);
 
 void shell_sort(int *array, size_t size)
 {
+    /*Generate Knuth sequence dynamically*/
+    int gap = 1;
+    size_t i, j ;
+    
     /*Error handling*/
     if (!array || size < 2) return;
 
-    /*Generate Knuth sequence dynamically*/
-    int gap = 1;
     while (gap < (int)size / 3) {
         gap = gap * 3 + 1; /*Knuth formula*/
     }
 
     while (gap >= 1)
     {
-        for (size_t i = gap; i < size; i++)
+        
+        for (i = gap; i < size; i++)
         {
             int temp = array[i];
-            size_t j = i;
+            j = i;
 
             while (j >= (size_t)gap && array[j - gap] > temp)
             {
