@@ -9,11 +9,12 @@ void print_array(const int *array, size_t size);
 /* Merge function */
 void merge(int *array, int *temp, size_t left, size_t mid, size_t right) {
 	size_t i = left, j = mid, k = left;
+	size_t l;
 
 	printf("Merging...\n[left]: ");
-	for (size_t l = left; l < mid; l++) printf("%d ", array[l]);
+	for (l = left; l < mid; l++) printf("%d ", array[l]);
 	printf("\n[right]: ");
-	for (size_t l = mid; l < right; l++) printf("%d ", array[l]);
+	for (l = mid; l < right; l++) printf("%d ", array[l]);
 	printf("\n");
 
 	/* Merge process */
@@ -35,19 +36,21 @@ void merge(int *array, int *temp, size_t left, size_t mid, size_t right) {
 
     /* Print final merged array */
     printf("[Done]: ");
-	for (size_t l = left; l < right; l++) printf("%d ", array[l]);
+	for (l = left; l < right; l++) printf("%d ", array[l]);
 	printf("\n");
 }
 
 /* Recursive Merge Sort */
 void merge_sort_recursive(int *array, int *temp, size_t left, size_t right)
 {
+	size_t mid;
+
 	if (right - left < 2)
 	{
 		return;
 	}
 
-	size_t mid = left + (right - left) / 2;
+	mid = left + (right - left) / 2;
 	merge_sort_recursive(array, temp, left, mid);
 	merge_sort_recursive(array, temp, mid, right);
 	merge(array, temp, left, mid, right);
