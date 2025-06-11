@@ -30,4 +30,4 @@ void shell_sort(int *array, size_t size);/*task 0*/
 void counting_sort(int *array, size_t size);/*task 1*/
 void merge_sort(int *array, size_t size);/*task 2*/
 
-#endif
+#endif /*_SORT_H_*/
