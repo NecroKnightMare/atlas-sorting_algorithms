@@ -20,7 +20,7 @@ void counting_sort(int *array, size_t size)
 		return;
 	}
 
-	/* Step 1: Find max value */
+	/* Find max value */
 	max = array[0];
 	for (i = 1; i < size; i++)
 	{
@@ -30,7 +30,7 @@ void counting_sort(int *array, size_t size)
 		}
 	}
 
-	/* Step 2: Allocate count array */
+	/* Allocate count array */
 	count = calloc(max + 1, sizeof(int));
 	if (!count)
 	{
@@ -43,7 +43,7 @@ void counting_sort(int *array, size_t size)
 		count[array[i]]++;
 	}
 
-	/* Step 4: Compute cumulative sum */
+	/* Compute sum */
 	for (k = 1; k <= max; k++)
 	{
 		count[k] += count[k - 1];
@@ -51,7 +51,7 @@ void counting_sort(int *array, size_t size)
 
 	print_array(count, max + 1);
 
-	/* Step 5: Allocate sorted array */
+	/*Allocate sorted array */
 	sorted = malloc(size * sizeof(int));
 	if (!sorted) 
 	{
@@ -59,20 +59,19 @@ void counting_sort(int *array, size_t size)
 		return;
 	}
 
-	/* Step 6: Build sorted array (traverse backwards for stability) */
+	/* Build sorted array going backwards*/
 	for (i = size; i > 0; i--)
 	{
 		sorted[count[array[i - 1]] - 1] = array[i - 1];
 		count[array[i - 1]]--;
 	}
 
-	/* Step 7: Copy sorted values back */
+	/* Copy sorted values back */
 	for (i = 0; i < size; i++)
 	{
 		array[i] = sorted[i];
 	}
 
-	/* Step 8: Free allocated memory */
 	free(sorted);
 	free(count);
 }
